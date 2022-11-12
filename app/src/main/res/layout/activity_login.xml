@@ -1,9 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Login"
+    android:background="@drawable/bg_login"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inicio de Sesion"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textAlignment="center"
+        />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        />
+
+    <EditText
+        android:id="@+id/correo"
+        android:layout_marginTop="25dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_etlogin"
+        android:layout_gravity="center"
+        android:hint="   Correo electronico "
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:paddingStart="15dp"
+        />
+
+    <EditText
+        android:id="@+id/contraseña"
+        android:layout_marginTop="25dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_etlogin"
+        android:layout_gravity="center"
+        android:hint="   Contraseña "
+        android:drawableStart="@drawable/ic_baseline_security_24"
+        android:paddingStart="15dp"
+        />
+
+        <TextView
+            android:id="@+id/recuperarclave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:text="¿Olvido su clave?"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingEnd="27pt"
+            />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnlogin"
+        android:layout_marginTop="25sp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bgbtnlog"
+       android:text="Iniciar Sesion"
+        />
+
+    <TextView
+        android:id="@+id/txtRegistratre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="¿No tienes cuenta? Registrate."
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn google"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="25sp"
+            android:layout_width="150dp"
+            android:drawableStart="@drawable/googlee"
+            android:paddingStart="10dp"
+            android:layout_height="45dp"
+            android:background="@drawable/bgbtnlog"
+            android:text="Google"
+            />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnfacebook"
+           android:layout_marginStart="15sp"
+            android:layout_marginTop="25sp"
+            android:layout_width="150dp"
+            android:drawableStart="@drawable/face"
+            android:paddingStart="10dp"
+            android:layout_height="45dp"
+            android:background="@drawable/bgbtnlog"
+            android:text="Facebook"
+            />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
