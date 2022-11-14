@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
-    android:background="@drawable/bg_login"
-    android:orientation="vertical"
-    android:gravity="center"
+    android:background="@drawable/fondo"
     >
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           tools:context=".Login"
+           android:orientation="vertical"
+           android:gravity="center"
+           >
 
 
     <TextView
@@ -50,16 +56,16 @@
         android:paddingStart="15dp"
         />
 
-        <TextView
-            android:id="@+id/recuperarclave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
-            android:text="¿Olvido su clave?"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:paddingEnd="27pt"
-            />
+    <TextView
+        android:id="@+id/recuperarclave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:text="¿Olvido su clave?"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:paddingEnd="27pt"
+        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnlogin"
@@ -67,7 +73,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bgbtnlog"
-       android:text="Iniciar Sesion"
+        android:text="Iniciar Sesion"
         />
 
     <TextView
@@ -80,40 +86,45 @@
         android:textColor="@color/black"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn google"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="25sp"
-            android:layout_width="150dp"
-            android:drawableStart="@drawable/googlee"
-            android:paddingStart="10dp"
-            android:layout_height="45dp"
-            android:background="@drawable/bgbtnlog"
-            android:text="Google"
-            />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="75dp"
+               android:gravity="center_horizontal"
+               android:orientation="horizontal"
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnfacebook"
-           android:layout_marginStart="15sp"
-            android:layout_marginTop="25sp"
-            android:layout_width="150dp"
-            android:drawableStart="@drawable/face"
-            android:paddingStart="10dp"
-            android:layout_height="45dp"
-            android:background="@drawable/bgbtnlog"
-            android:text="Facebook"
-            />
+               >
 
-    </LinearLayout>
+               <androidx.appcompat.widget.AppCompatButton
+                   android:id="@+id/btngoogle"
+                   android:layout_width="150dp"
 
+                   android:layout_height="45dp"
+                   android:layout_marginTop="20sp"
+                   android:background="@drawable/bgbtnlog"
+                   android:drawableStart="@drawable/googlee"
 
+                   android:paddingStart="25dp"
+                   android:text="Google" />
 
 
-</LinearLayout>
+               <androidx.appcompat.widget.AppCompatButton
+                   android:id="@+id/btnfacebook"
+                   android:layout_width="150dp"
+                   android:layout_height="45dp"
+                   android:layout_marginTop="20sp"
+                   android:background="@drawable/bgbtnlog"
+                   android:drawableStart="@drawable/face"
+                   android:paddingStart="10dp"
+                   android:text="Facebook"
+
+                   />
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+
+
+
+</ScrollView>
