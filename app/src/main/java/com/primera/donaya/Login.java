@@ -128,7 +128,7 @@ public class Login extends AppCompatActivity {
                             //FirebaseUser user = mAuth.getCurrentUser();
 //Iniciar DASHBOARD u otra actividad luego del SigIn Exitoso
 
-                            Intent dashboardActivity = new Intent(Login.this, Limpio.class);
+                            Intent dashboardActivity = new Intent(Login.this, MainActivity.class);
                             startActivity(dashboardActivity);
                             Login.this.finish();
 
@@ -170,7 +170,7 @@ public class Login extends AppCompatActivity {
             //Registrar usuario
             //Exitoso -> Mostrar toast
             //redireccionar - intent a login
-            Intent intent = new Intent(Login.this, MainActivity.class);
+            Intent intent = new Intent(Login.this, Limpio.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //ocultar progressBar
