@@ -39,6 +39,11 @@ public class Login extends AppCompatActivity {
     //Agregar cliente de inicio de sesión de Google
     private GoogleSignInClient mGoogleSignInClient;
 
+    //Variable mAuthStateListener para controlar el estado del usuario:
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -78,6 +83,21 @@ public class Login extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         mAuth = FirebaseAuth.getInstance();
+
+
+        //Controlar el estado del usuario
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null){ //si no es null redirigir
+                    Intent intentDashboard = new Intent(getApplicationContext(), Limpio.class);
+                    intentDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intentDashboard);
+                }
+            }
+        };
+
+
 
     }
 
