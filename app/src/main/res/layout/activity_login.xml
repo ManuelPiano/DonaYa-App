@@ -103,7 +103,7 @@
                    android:layout_marginTop="20sp"
                    android:background="@drawable/bgbtnlog"
                    android:drawableStart="@drawable/googlee"
-
+                   android:onClick="LoginGoogle"
                    android:paddingStart="25dp"
                    android:text="Google" />
 
