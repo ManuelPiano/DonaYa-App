@@ -44,98 +44,11 @@ public class Limpio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_limpio);
 
-        userNombre = findViewById(R.id.userNombre);
-        userEmail = findViewById(R.id.userEmail);
-        userID = findViewById(R.id.userId);
-        userImg = findViewById(R.id.userImagen);
-        btnCerrarSesion = findViewById(R.id.btnLogout);
-        btnEliminarCta = findViewById(R.id.btnEliminarCta);
 
-    mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-
-
-        //Establecer campos
-        userNombre.setText(currentUser.getDisplayName());
-        userEmail.setText(currentUser.getEmail());
-        userID.setText(currentUser.getUid());
-        Glide.with(this).load(currentUser.getPhotoUrl()).into(userImg);
-
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //Cerrar sesion con firebase
-                mAuth.signOut();
-
-                //Cerrar sesión con google tambien: Google sign out
-                mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        //Abrir MainActivity con SigIn button
-                        if(task.isSuccessful()){
-                            Intent mainActivity = new Intent(getApplicationContext(), Login.class);
-                            startActivity(mainActivity);
-                            Limpio.this.finish();
-                        }else{
-                            Toast.makeText(getApplicationContext(), "No se pudo cerrar sesión con google",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
-
-            }
-        });
-
-
-        btnEliminarCta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //obtener el usuario actual
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                // Get the account
-                GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-                if (signInAccount != null) {
-                    AuthCredential credential =
-                            GoogleAuthProvider.getCredential(signInAccount.getIdToken(), null);
-                    //Re-autenticar el usuario para eliminarlo
-                    user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                //Eliminar el usuario
-                                user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d("Limpio", "onSuccess:Usuario Eliminado");
-                                        //llamar al metodo signOut para salir de aqui
-                                        signOut();
-                                    }
-                                });
-                            } else {
-                                Log.e("Limpio", "onComplete: Error al eliminar el usuario",
-                                        task.getException());
-                            }
-                        }
-                    });
-                } else {
-                    Log.d("Limpio", "Error: reAuthenticateUser: user account is null");
-                }
-            }
-        });//fin onClick
 
     }
 
-    private void signOut() {
+     void signOut() {
         //sign out de firebase
         FirebaseAuth.getInstance().signOut();
         //sign out de "google sign in"

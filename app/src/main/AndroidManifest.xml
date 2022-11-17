@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.primera.donaya">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Donaya"
         tools:targetApi="31">
+        <activity
+            android:name=".InicioActivity"
+            android:exported="false"
+            android:label="@string/title_activity_inicio"
+            android:theme="@style/Theme.Donaya.NoActionBar" />
+        <activity
+            android:name=".Nose"
+            android:exported="false" />
         <activity
             android:name=".Limpio"
             android:exported="false" />
@@ -39,11 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Donaya.NoActionBar" />
     </application>
 
 </manifest>

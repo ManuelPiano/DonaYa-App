@@ -39,11 +39,6 @@ public class Login extends AppCompatActivity {
     //Agregar cliente de inicio de sesión de Google
     private GoogleSignInClient mGoogleSignInClient;
 
-    //Variable mAuthStateListener para controlar el estado del usuario:
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -83,21 +78,6 @@ public class Login extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         mAuth = FirebaseAuth.getInstance();
-
-
-        //Controlar el estado del usuario
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (firebaseAuth.getCurrentUser() != null){ //si no es null redirigir
-                    Intent intentDashboard = new Intent(getApplicationContext(), Limpio.class);
-                    intentDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intentDashboard);
-                }
-            }
-        };
-
-
 
     }
 
@@ -148,7 +128,7 @@ public class Login extends AppCompatActivity {
                             //FirebaseUser user = mAuth.getCurrentUser();
 //Iniciar DASHBOARD u otra actividad luego del SigIn Exitoso
 
-                            Intent dashboardActivity = new Intent(Login.this, MainActivity.class);
+                            Intent dashboardActivity = new Intent(Login.this, InicioActivity.class);
                             startActivity(dashboardActivity);
                             Login.this.finish();
 
@@ -168,7 +148,7 @@ public class Login extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null){ //si no es null el usuario ya esta logueado
             //mover al usuario al dashboard
-            Intent dashboardActivity = new Intent(Login.this, Limpio.class);
+            Intent dashboardActivity = new Intent(Login.this, InicioActivity.class);
             startActivity(dashboardActivity);
         }
         super.onStart();
@@ -190,7 +170,7 @@ public class Login extends AppCompatActivity {
             //Registrar usuario
             //Exitoso -> Mostrar toast
             //redireccionar - intent a login
-            Intent intent = new Intent(Login.this, Limpio.class);
+            Intent intent = new Intent(Login.this, InicioActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //ocultar progressBar
