@@ -91,6 +91,7 @@ public class Login extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -129,6 +130,7 @@ public class Login extends AppCompatActivity {
 //Iniciar DASHBOARD u otra actividad luego del SigIn Exitoso
 
                             Intent dashboardActivity = new Intent(Login.this, InicioActivity.class);
+                            Toast.makeText(Login.this, "Ha iniciado sesión", Toast.LENGTH_SHORT).show();
                             startActivity(dashboardActivity);
                             Login.this.finish();
 
@@ -174,6 +176,7 @@ public class Login extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //ocultar progressBar
+
             mProgressBar.dismiss();
         }
     }

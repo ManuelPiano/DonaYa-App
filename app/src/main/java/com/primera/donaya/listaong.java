@@ -28,7 +28,7 @@ public class listaong extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nose);
 
-        lista = (ListView) findViewById(R.id.lvLista);
+        //lista = (ListView) findViewById(R.id.lvLista);
 
         lista.setAdapter(new Adaptador(this, datos, datosImg));
 
