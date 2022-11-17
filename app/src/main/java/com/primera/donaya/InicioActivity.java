@@ -1,14 +1,13 @@
 package com.primera.donaya;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Menu;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,29 +19,55 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.primera.donaya.databinding.ActivityInicioBinding;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Limpio extends AppCompatActivity {
+public class InicioActivity extends AppCompatActivity {
+
+    private AppBarConfiguration mAppBarConfiguration;
+    private ActivityInicioBinding binding;
+
 
     private TextView userNombre, userEmail, userID, MenuuserNombre,MenuuserEmail;
     private CircleImageView userImg, Menuuserimg;
     private FirebaseAuth mAuth;
     Button btnCerrarSesion, btnEliminarCta;
+    String MiWhatsapp = "https://wa.me/75035260";
 
-    //Variables opcionales para desloguear de google tambien
+    FloatingActionButton btnwhat;
+
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions gso;
 
+    Limpio limpio = new Limpio();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_limpio);
+
+        binding = ActivityInicioBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.appBarInicio.toolbar);
+
+
 
 
         /*MenuuserNombre = findViewById(R.id.MenuuserNombre);
@@ -87,9 +112,9 @@ public class Limpio extends AppCompatActivity {
                         //Abrir MainActivity con SigIn button
                         if(task.isSuccessful()){
                             Intent mainActivity = new Intent(getApplicationContext(), Login.class);
-                            Toast.makeText(Limpio.this, "Ha cerrado sesión", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InicioActivity.this, "Ha cerrado sesión", Toast.LENGTH_SHORT).show();
                             startActivity(mainActivity);
-                            Limpio.this.finish();
+                            InicioActivity.this.finish();
                         }else{
                             Toast.makeText(getApplicationContext(), "No se pudo cerrar sesión con google",
                                     Toast.LENGTH_LONG).show();
@@ -121,30 +146,54 @@ public class Limpio extends AppCompatActivity {
                                 user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        Log.d("Limpio", "onSuccess:Usuario Eliminado");
+                                        Log.d("InicioActivity", "onSuccess:Usuario Eliminado");
                                         //llamar al metodo signOut para salir de aqui
 
-                                        Toast.makeText(Limpio.this, "Usuario Eliminado Correctamente", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(InicioActivity.this, "Usuario Eliminado Correctamente", Toast.LENGTH_SHORT).show();
                                         signOut();
                                     }
                                 });
                             } else {
-                                Log.e("Limpio", "onComplete: Error al eliminar el usuario",
+                                Log.e("InicioActivity", "onComplete: Error al eliminar el usuario",
                                         task.getException());
                             }
                         }
                     });
                 } else {
-                    Log.d("Limpio", "Error: reAuthenticateUser: user account is null");
+                    Log.d("InicioActivity", "Error: reAuthenticateUser: user account is null");
                 }
             }
-        });//fin onClick
+        });//fin onClick*/
 
 
 
 
+        binding.appBarInicio.fab.setOnClickListener(new View.OnClickListener() {
 
+
+            @Override
+            public void onClick(View view) {
+                Uri _link = Uri.parse(MiWhatsapp);
+                Intent i = new Intent(Intent.ACTION_VIEW, _link);
+                startActivity(i);
+
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_organizaciones)
+                .setOpenableLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_inicio);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
+
 
     private void signOut() {
         //sign out de firebase
@@ -158,10 +207,63 @@ public class Limpio extends AppCompatActivity {
                 Intent IntentMainActivity = new Intent(getApplicationContext(), Login.class);
                 IntentMainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(IntentMainActivity);
-                Limpio.this.finish();
+                InicioActivity.this.finish();
             }
-        });*/
+        });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.inicio, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        switch (item.getItemId()){
+            case R.id.action_logout:
+
+                this.navlogout();
+                break;
+
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void navlogout() {
+
+
+        //Cerrar sesion con firebase
+        mAuth.signOut();
+
+        //Cerrar sesión con google tambien: Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                //Abrir MainActivity con SigIn button
+                if(task.isSuccessful()){
+                    Intent mainActivity = new Intent(getApplicationContext(), Login.class);
+                    Toast.makeText(InicioActivity.this, "Ha cerrado sesión", Toast.LENGTH_SHORT).show();
+                    startActivity(mainActivity);
+                    InicioActivity.this.finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), "No se pudo cerrar sesión con google",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_inicio);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
 
 
 }

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class Adaptador extends BaseAdapter {
 
-    private static LayoutInflater inflater = null;
+    public static LayoutInflater inflater = null;
 
     Context contexto;
     String[][] datos;

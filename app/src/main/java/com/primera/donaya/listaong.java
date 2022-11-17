@@ -26,9 +26,9 @@ public class listaong extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_nose);
 
-        lista = (ListView) findViewById(R.id.lvLista);
+        //lista = (ListView) findViewById(R.id.lvLista);
 
         lista.setAdapter(new Adaptador(this, datos, datosImg));
 

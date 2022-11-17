@@ -4,6 +4,12 @@
     package="com.primera.donaya">
 
     <uses-permission android:name="android.permission.INTERNET" />
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="android.permission.CALL_PHONE" ></uses-permission>
+
+
+>>>>>>> ce02437ac8abc9be97cd39c15e3f4866b8bcea46
 
     <application
         android:allowBackup="true"
@@ -16,7 +22,16 @@
         android:theme="@style/Theme.Donaya"
         tools:targetApi="31">
         <activity
+
             android:name=".Mainlogotipo"
+=======
+            android:name=".InicioActivity"
+            android:exported="false"
+            android:label="@string/title_activity_inicio"
+            android:theme="@style/Theme.Donaya.NoActionBar" />
+        <activity
+            android:name=".Nose"
+>>>>>>> ce02437ac8abc9be97cd39c15e3f4866b8bcea46
             android:exported="false" />
         <activity
             android:name=".Limpio"
@@ -42,6 +57,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
 
         <activity
@@ -49,6 +65,8 @@
             android:exported="false"
             android:label="@string/app_name"
         android:theme="@style/Theme.Donaya.NoActionBar" />
+=======
+>>>>>>> ce02437ac8abc9be97cd39c15e3f4866b8bcea46
     </application>
 
 </manifest>
