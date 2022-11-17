@@ -1,6 +1,7 @@
 package com.primera.donaya;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -47,6 +49,9 @@ public class InicioActivity extends AppCompatActivity {
     private CircleImageView userImg, Menuuserimg;
     private FirebaseAuth mAuth;
     Button btnCerrarSesion, btnEliminarCta;
+    String MiWhatsapp = "https://wa.me/75035260";
+
+    FloatingActionButton btnwhat;
 
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions gso;
@@ -61,6 +66,7 @@ public class InicioActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarInicio.toolbar);
+
 
 
 
@@ -167,6 +173,10 @@ public class InicioActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                Uri _link = Uri.parse(MiWhatsapp);
+                Intent i = new Intent(Intent.ACTION_VIEW, _link);
+                startActivity(i);
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -176,7 +186,7 @@ public class InicioActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_logout)
+                R.id.nav_home, R.id.nav_organizaciones)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_inicio);
